@@ -1,9 +1,11 @@
 // src/InteractivePictoBloxModule.jsx
 import React from 'react';
+import { useEffect } from 'react';
 import { useSlideNavigation } from './components/utils/useSlideNavigation';
 
 // Import semua slide sebagai komponen
 import WelcomeSlide from './components/slides/WelcomeSlide';
+import IslamicValuesIntroSlide from './components/slides/IslamicValuesIntroSlide';
 import LearningObjectivesSlide from './components/slides/LearningObjectivesSlide';
 import GettingStartedSlide from './components/slides/GettingStartedSlide';
 import TheStageSlide from './components/slides/TheStageSlide';
@@ -32,6 +34,7 @@ import KeyboardHint from './components/layout/KeyboardHint';
 
 const slides = [
   { title: "Welcome", Component: WelcomeSlide },
+  { title: "Islamic Values", Component: IslamicValuesIntroSlide },
   { title: "Learning Objectives", Component: LearningObjectivesSlide },
   { title: "Getting Started", Component: GettingStartedSlide },
   { title: "Interface: The Stage", Component: TheStageSlide },
@@ -67,8 +70,20 @@ const InteractivePictoBloxModule = () => {
   const CurrentSlideComponent = slides[currentSlide].Component;
   
   // Check if current slide is a quiz
+ 
   const isQuizSlide = slides[currentSlide].title.includes('Quiz');
+useEffect(() => {
+  const handleQuizNavigation = (e) => {
+    if (e.detail === 'prev') {
+      prevSlide();
+    } else if (e.detail === 'next') {
+      nextSlide();
+    }
+  };
 
+  window.addEventListener('navigate', handleQuizNavigation);
+  return () => window.removeEventListener('navigate', handleQuizNavigation);
+}, [prevSlide, nextSlide]);
   return (
     <div className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
       {/* Progress bar */}
