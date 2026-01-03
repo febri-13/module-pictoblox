@@ -4,7 +4,7 @@ import { Globe } from 'lucide-react';
 export default function GettingStartedSlide() {
   return (
     <div className="h-full flex flex-col justify-start pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
-      <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row items-center md:justify-center gap-3 sm:gap-4 mb-6">
         <Globe className="w-12 h-12 sm:w-16 sm:h-16 text-green-500 flex-shrink-0" />
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 text-center sm:text-left">
           Getting Started

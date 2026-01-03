@@ -3,7 +3,7 @@ import { Globe } from 'lucide-react'; // hanya jika perlu; kalau tidak, hapus
 
 export default function TheStageSlide() {
   return (
-    <div className="h-full flex flex-col justify-start pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
+    <div className="h-full flex flex-col justify-start items-center md:justify-center pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-6 text-center sm:text-left">
         🎬 The Stage
       </h2>

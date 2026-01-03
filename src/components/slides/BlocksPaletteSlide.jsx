@@ -3,7 +3,7 @@ import { CheckCircle } from 'lucide-react';
 
 export default function BlocksPaletteSlide() {
   return (
-    <div className="h-full flex flex-col justify-start pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
+    <div className="h-full flex flex-col justify-start md:justify-center pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3 sm:mb-4">
         🧩 The Blocks Palette
       </h2>

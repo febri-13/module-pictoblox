@@ -4,7 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 export default function Step3LeftArrowSlide() {
   return (
     <div className="h-full flex flex-col justify-start pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
-      <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-6">
+      <div className="flex flex-col md:justify-center sm:flex-row items-center gap-3 sm:gap-4 mb-6">
         <div className="bg-purple-500 text-white rounded-full w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-2xl font-bold shadow-md">
           3
         </div>

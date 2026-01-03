@@ -149,7 +149,7 @@ if (isComplete) {
     <div className="h-full flex flex-col justify-between p-4 md:p-6 overflow-y-auto">
       {/* Header */}
       <div>
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center md:justify-center gap-4 mb-6">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800">{quiz.title}</h2>
           <div className="bg-blue-100 px-4 py-2 rounded-full text-center">
             <p className="text-base md:text-lg font-semibold text-blue-700">

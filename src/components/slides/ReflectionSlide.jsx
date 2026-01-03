@@ -1,7 +1,7 @@
 // src/components/slides/ReflectionSlide.jsx
 export default function ReflectionSlide() {
   return (
-    <div className="h-full flex flex-col justify-start pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
+    <div className="h-full flex md:justify-center flex-col justify-start pt-6 pb-8 px-4 sm:px-6 md:px-8 overflow-y-auto">
       <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-6 text-center">
         🧠 Check Your Understanding
       </h2>
