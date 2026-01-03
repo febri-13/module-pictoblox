@@ -7,21 +7,18 @@ import SlideMenuSidebar from './components/layout/SlideMenuSidebar';
 
 // Import slide components (sesuaikan dengan file Anda)
 import WelcomeSlide from './components/slides/WelcomeSlide';
-import IslamicValuesIntroSlide from './components/slides/IslamicValuesIntroSlide';
 import LearningObjectivesSlide from './components/slides/LearningObjectivesSlide';
 import GettingStartedSlide from './components/slides/GettingStartedSlide';
 import TheStageSlide from './components/slides/TheStageSlide';
 import SpriteListSlide from './components/slides/SpriteListSlide';
 import BlocksPaletteSlide from './components/slides/BlocksPaletteSlide';
 import ScriptsAreaSlide from './components/slides/ScriptsAreaSlide';
-import QuizInterfaceSlide from './components/slides/QuizInterfaceSlide';
 import PracticeIntroSlide from './components/slides/PracticeIntroSlide';
 import Step1CostumesSlide from './components/slides/Step1CostumesSlide';
 import Step2RightArrowSlide from './components/slides/Step2RightArrowSlide';
 import Step3LeftArrowSlide from './components/slides/Step3LeftArrowSlide';
 import Step4ClickToSpeakSlide from './components/slides/Step4ClickToSpeakSlide';
 import SavingSlide from './components/slides/SavingSlide';
-import QuizCodingSlide from './components/slides/QuizCodingSlide';
 import ReflectionSlide from './components/slides/ReflectionSlide';
 import ChallengesSlide from './components/slides/ChallengesSlide';
 import FinalMessageSlide from './components/slides/FinalMessageSlide';
@@ -35,21 +32,18 @@ export default function InteractivePictoBloxModule() {
   // Slide configuration
   const slides = [
     { title: 'Welcome to PictoBlox!', component: <WelcomeSlide /> },
-    { title: 'IslamicValuesIntroSlide', component: <IslamicValuesIntroSlide />},
     { title: 'Learning Objectives', component: <LearningObjectivesSlide /> },
     { title: 'Getting Started', component: <GettingStartedSlide /> },
     { title: 'The Stage', component: <TheStageSlide /> },
     { title: 'Sprite List & Info', component: <SpriteListSlide /> },
     { title: 'Blocks Palette', component: <BlocksPaletteSlide /> },
     { title: 'Scripts Area', component: <ScriptsAreaSlide /> },
-    { title: 'QuizInterfaceSlide', component: <QuizInterfaceSlide /> }, 
     { title: 'Practice Time!', component: <PracticeIntroSlide /> },
     { title: 'Step 1: Costumes', component: <Step1CostumesSlide /> },
     { title: 'Step 2: Right Arrow', component: <Step2RightArrowSlide /> },
     { title: 'Step 3: Left Arrow', component: <Step3LeftArrowSlide /> },
     { title: 'Step 4: Click to Speak', component: <Step4ClickToSpeakSlide /> },
     { title: 'Saving Your Project', component: <SavingSlide /> },
-    { title: 'QuizCodingSlide', component: <QuizCodingSlide /> },
     { title: 'Reflection', component: <ReflectionSlide /> },
     { title: 'Challenges', component: <ChallengesSlide /> },
     { title: 'Congratulations!', component: <FinalMessageSlide /> },
@@ -98,9 +92,9 @@ export default function InteractivePictoBloxModule() {
   }, [nextSlide, prevSlide, showMenu]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100">
+    <div className="h-screen flex flex-col bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 overflow-hidden">
       
-      {/* Header Modern - menggantikan SlideProgress, SlideCounter, MenuButton, NavButtons */}
+      {/* Header Modern */}
       <Header
         currentSlide={currentSlide}
         totalSlides={slides.length}
@@ -111,17 +105,19 @@ export default function InteractivePictoBloxModule() {
         showMenu={showMenu}
       />
 
-      {/* Main Content Area */}
-      <div className="pt-20 pb-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Render current slide */}
-          <div className="animate-fadeIn">
-            {slides[currentSlide].component}
+      {/* Main Content Area - SCROLLABLE di mobile */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="min-h-full pt-4 pb-20 sm:pb-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            {/* Render current slide */}
+            <div className="animate-fadeIn">
+              {slides[currentSlide].component}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Sidebar Menu - menggantikan SlideMenuOverlay */}
+      {/* Sidebar Menu */}
       <SlideMenuSidebar
         slides={slides}
         currentSlide={currentSlide}
@@ -131,10 +127,10 @@ export default function InteractivePictoBloxModule() {
         isOpen={showMenu}
       />
 
-      {/* Optional: Mark Complete Button (floating) */}
+      {/* Mark Complete Button - HIDDEN di mobile (< 768px) */}
       <button
         onClick={markComplete}
-        className={`fixed bottom-6 right-6 px-6 py-3 rounded-full shadow-lg font-semibold transition-all transform hover:scale-105 ${
+        className={`hidden md:block fixed bottom-6 right-6 px-6 py-3 rounded-full shadow-lg font-semibold transition-all transform hover:scale-105 z-30 ${
           completedSlides.has(currentSlide)
             ? 'bg-green-500 text-white'
             : 'bg-white text-gray-700 hover:bg-gray-50'

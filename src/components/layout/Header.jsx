@@ -1,6 +1,6 @@
 // src/components/layout/Header.jsx
 import { ChevronLeft, ChevronRight, Menu, X } from 'lucide-react';
-import { useState } from 'react';
+// import { useState } from 'react';
 
 export default function Header({
   currentSlide,
@@ -16,16 +16,16 @@ export default function Header({
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           
           {/* Left: Logo/Title */}
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">P</span>
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-base sm:text-xl">P</span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-gray-800">PictoBlox Level 7</h1>
+              <h1 className="text-base sm:text-lg font-bold text-gray-800">PictoBlox Level 7</h1>
               <p className="text-xs text-gray-500">Stage 1: Welcome to Coding</p>
             </div>
           </div>
@@ -84,15 +84,15 @@ export default function Header({
         </div>
 
         {/* Mobile Progress Bar (below header on small screens) */}
-        <div className="md:hidden pb-2">
-          <div className="flex items-center gap-3">
-            <div className="flex-1 bg-gray-200 rounded-full h-1.5 overflow-hidden">
+        <div className="md:hidden pb-2 pt-1">
+          <div className="flex items-center gap-2">
+            <div className="flex-1 bg-gray-200 rounded-full h-1 overflow-hidden">
               <div
                 className="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500"
                 style={{ width: `${progress}%` }}
               />
             </div>
-            <span className="text-xs font-semibold text-gray-700">
+            <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">
               {currentSlide + 1}/{totalSlides}
             </span>
           </div>
