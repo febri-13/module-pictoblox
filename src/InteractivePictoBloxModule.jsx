@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useSlideNavigation } from './components/utils/useSlideNavigation';
 
 // Import semua slide sebagai komponen
+import PictoBloxOverviewSlide from './components/slides/PictoBloxOverviewSlide';
 import WelcomeSlide from './components/slides/WelcomeSlide';
 import IslamicValuesIntroSlide from './components/slides/IslamicValuesIntroSlide';
 import LearningObjectivesSlide from './components/slides/LearningObjectivesSlide';
@@ -36,6 +37,7 @@ const slides = [
   { title: "Welcome", Component: WelcomeSlide },
   { title: "Islamic Values", Component: IslamicValuesIntroSlide },
   { title: "Learning Objectives", Component: LearningObjectivesSlide },
+  { title: "📅 Learning Timeline", Component: PictoBloxOverviewSlide },
   { title: "Getting Started", Component: GettingStartedSlide },
   { title: "Interface: The Stage", Component: TheStageSlide },
   { title: "Interface: Sprite List", Component: SpriteListSlide },
