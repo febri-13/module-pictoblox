@@ -1,18 +1,19 @@
-// src/InteractivePictoBloxModule.jsx
 import { useState, useEffect, useCallback } from 'react';
 
-// Import komponen layout BARU
+// Import komponen layout
 import Header from './components/layout/Header';
 import SlideMenuSidebar from './components/layout/SlideMenuSidebar';
 
-// Import slide components (sesuaikan dengan file Anda)
+// Import slide components
 import WelcomeSlide from './components/slides/WelcomeSlide';
+import IslamicValuesIntroSlide from './components/slides/IslamicValuesIntroSlide';
 import LearningObjectivesSlide from './components/slides/LearningObjectivesSlide';
 import GettingStartedSlide from './components/slides/GettingStartedSlide';
 import TheStageSlide from './components/slides/TheStageSlide';
 import SpriteListSlide from './components/slides/SpriteListSlide';
 import BlocksPaletteSlide from './components/slides/BlocksPaletteSlide';
 import ScriptsAreaSlide from './components/slides/ScriptsAreaSlide';
+import QuizSlide from './components/slides/QuizSlide';
 import PracticeIntroSlide from './components/slides/PracticeIntroSlide';
 import Step1CostumesSlide from './components/slides/Step1CostumesSlide';
 import Step2RightArrowSlide from './components/slides/Step2RightArrowSlide';
@@ -29,33 +30,10 @@ export default function InteractivePictoBloxModule() {
   const [completedSlides, setCompletedSlides] = useState(new Set());
   const [showMenu, setShowMenu] = useState(false);
 
-  // Slide configuration
-  const slides = [
-    { title: 'Welcome to PictoBlox!', component: <WelcomeSlide /> },
-    { title: 'Learning Objectives', component: <LearningObjectivesSlide /> },
-    { title: 'Getting Started', component: <GettingStartedSlide /> },
-    { title: 'The Stage', component: <TheStageSlide /> },
-    { title: 'Sprite List & Info', component: <SpriteListSlide /> },
-    { title: 'Blocks Palette', component: <BlocksPaletteSlide /> },
-    { title: 'Scripts Area', component: <ScriptsAreaSlide /> },
-    { title: 'Practice Time!', component: <PracticeIntroSlide /> },
-    { title: 'Step 1: Costumes', component: <Step1CostumesSlide /> },
-    { title: 'Step 2: Right Arrow', component: <Step2RightArrowSlide /> },
-    { title: 'Step 3: Left Arrow', component: <Step3LeftArrowSlide /> },
-    { title: 'Step 4: Click to Speak', component: <Step4ClickToSpeakSlide /> },
-    { title: 'Saving Your Project', component: <SavingSlide /> },
-    { title: 'Reflection', component: <ReflectionSlide /> },
-    { title: 'Challenges', component: <ChallengesSlide /> },
-    { title: 'Congratulations!', component: <FinalMessageSlide /> },
-  ];
-
-  // Calculate progress
-  const progress = ((currentSlide + 1) / slides.length) * 100;
-
   // Navigation functions with useCallback
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => Math.min(prev + 1, slides.length - 1));
-  }, [slides.length]);
+    setCurrentSlide((prev) => Math.min(prev + 1, 18)); // Total 19 slides (0-18)
+  }, []);
 
   const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => Math.max(prev - 1, 0));
@@ -72,6 +50,47 @@ export default function InteractivePictoBloxModule() {
   const markComplete = useCallback(() => {
     setCompletedSlides((prev) => new Set(prev).add(currentSlide));
   }, [currentSlide]);
+
+  // ✅ SOLUSI: Slide configuration dengan FUNCTION untuk render component
+  // Ini memastikan nextSlide/prevSlide sudah tersedia saat component di-render
+  const slideConfig = [
+    { title: 'Welcome to PictoBlox!', render: () => <WelcomeSlide /> },
+    { title: 'Islamic Values', render: () => <IslamicValuesIntroSlide /> },
+    { title: 'Learning Objectives', render: () => <LearningObjectivesSlide /> },
+    { title: 'Getting Started', render: () => <GettingStartedSlide /> },
+    { title: 'The Stage', render: () => <TheStageSlide /> },
+    { title: 'Sprite List & Info', render: () => <SpriteListSlide /> },
+    { title: 'Blocks Palette', render: () => <BlocksPaletteSlide /> },
+    { title: 'Scripts Area', render: () => <ScriptsAreaSlide /> },
+    { 
+      title: 'Quiz: Interface', 
+      render: () => <QuizSlide 
+        quizId="quiz-interface" 
+        onNext={nextSlide}  // ✅ Sekarang sudah terdefinisi!
+        onPrev={prevSlide}  // ✅ Sekarang sudah terdefinisi!
+      /> 
+    },
+    { title: 'Practice Time!', render: () => <PracticeIntroSlide /> },
+    { title: 'Step 1: Costumes', render: () => <Step1CostumesSlide /> },
+    { title: 'Step 2: Right Arrow', render: () => <Step2RightArrowSlide /> },
+    { title: 'Step 3: Left Arrow', render: () => <Step3LeftArrowSlide /> },
+    { title: 'Step 4: Click to Speak', render: () => <Step4ClickToSpeakSlide /> },
+    { title: 'Saving Your Project', render: () => <SavingSlide /> },
+    { 
+      title: 'Quiz: Coding', 
+      render: () => <QuizSlide 
+        quizId="quiz-coding" 
+        onNext={nextSlide}  // ✅ Sekarang sudah terdefinisi!
+        onPrev={prevSlide}  // ✅ Sekarang sudah terdefinisi!
+      /> 
+    },
+    { title: 'Reflection', render: () => <ReflectionSlide /> },
+    { title: 'Challenges', render: () => <ChallengesSlide /> },
+    { title: 'Congratulations!', render: () => <FinalMessageSlide /> },
+  ];
+
+  // Calculate progress
+  const progress = ((currentSlide + 1) / slideConfig.length) * 100;
 
   // Keyboard navigation
   useEffect(() => {
@@ -97,7 +116,7 @@ export default function InteractivePictoBloxModule() {
       {/* Header Modern */}
       <Header
         currentSlide={currentSlide}
-        totalSlides={slides.length}
+        totalSlides={slideConfig.length}
         progress={progress}
         onPrev={prevSlide}
         onNext={nextSlide}
@@ -107,11 +126,11 @@ export default function InteractivePictoBloxModule() {
 
       {/* Main Content Area - SCROLLABLE di mobile */}
       <div className="flex-1 overflow-y-auto">
-        <div className="min-h-full pt-4 pb-20 sm:pb-8 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-full pt-20 sm:pt-6 md:pt-20 pb-20 sm:pb-8 px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            {/* Render current slide */}
+            {/* ✅ Render current slide dengan memanggil function */}
             <div className="animate-fadeIn">
-              {slides[currentSlide].component}
+              {slideConfig[currentSlide].render()}
             </div>
           </div>
         </div>
@@ -119,7 +138,7 @@ export default function InteractivePictoBloxModule() {
 
       {/* Sidebar Menu */}
       <SlideMenuSidebar
-        slides={slides}
+        slides={slideConfig}
         currentSlide={currentSlide}
         completedSlides={completedSlides}
         onClose={toggleMenu}
