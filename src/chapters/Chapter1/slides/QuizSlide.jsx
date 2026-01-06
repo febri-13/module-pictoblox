@@ -1,6 +1,6 @@
-// src/components/slides/QuizSlide.jsx
+// ./slides/QuizSlide.jsx
 import React, { useEffect } from 'react';
-import { useQuiz } from '../utils/useQuiz';
+import { useQuiz } from '../../../components/utils/useQuiz';
 import { 
   CheckCircle, XCircle, ArrowRight, ArrowLeft, 
   RotateCcw, ChevronRight, ChevronLeft 
